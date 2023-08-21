@@ -1,4 +1,4 @@
-from aiogram import Router
+from aiogram import Dispatcher
 from sqlalchemy.orm import sessionmaker
 
 from .db import DbSessionMiddleware
@@ -8,6 +8,5 @@ __all__ = (
 )
 
 
-def register_middlewares(router: Router, db_pool: sessionmaker) -> None:
-    router.message.middleware(DbSessionMiddleware(db_pool))
-    router.callback_query.middleware(DbSessionMiddleware(db_pool))
+def register_middlewares(dp: Dispatcher, db_pool: sessionmaker) -> None:
+    dp.update.outer_middleware(DbSessionMiddleware(db_pool))
