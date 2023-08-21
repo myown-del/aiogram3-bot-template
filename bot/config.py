@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from environs import Env
 from dataclasses import dataclass
 
 from sqlalchemy.engine import URL
@@ -15,25 +14,14 @@ class DB:
     database: str
 
     @property
-    def URL(self) -> URL:
-        return URL(
+    def url(self) -> URL:
+        return URL.create(
             drivername="postgresql+asyncpg",
             host=self.host,
             port=self.port,
             username=self.user,
             password=self.password,
             database=self.database,
-        )
-
-    @property
-    def SYNC_URL(self) -> URL:
-        return URL(
-            drivername="postgresql",
-            host=self.host,
-            port=self.port,
-            username=self.user,
-            password=self.password,
-            database=self.database
         )
 
 

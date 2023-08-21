@@ -3,5 +3,5 @@ alembic
 aiogram==3.0.0b7
 aiogram_dialog==2.0.0b15
 pydantic
-sqlalchemy
+sqlalchemy<3.0
 environs
