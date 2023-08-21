@@ -15,3 +15,5 @@ async def handle_exception(error: ErrorEvent, dialog_manager: DialogManager, **k
         # await dialog_manager.start(STATE, mode=StartMode.RESET_STACK)
         logger.info(f"Restart dialog for user '{user.full_name}' (tg_id: {user.id})")
         return False
+
+    logger.error(f"Uncaught exception, exc: {error.exception}", exc_info=True)
